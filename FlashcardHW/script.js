@@ -18,7 +18,7 @@ function displayCard() {
         let cardContent = document.getElementById('card-content')
         cardContent.innerText = term
     }else{
-        let definition = flashcards[currentIndex].term
+        let definition = flashcards[currentIndex].definition
         let cardContent = document.getElementById('card-content')
         cardContent.innerText = definition
     }
@@ -40,8 +40,23 @@ document.getElementById('next-btn').addEventListener('click', ()=> {
     displayCard();
 })
 document.getElementById('flashcard').addEventListener('click', ()=> {
-    showingTerm = !showingTerm;
+    if(showingTerm) {
+        showingTerm=false;
+    }else {
+        showingTerm=true;
+    }
     displayCard();
+})
+document.getElementById('add-card-btn').addEventListener('click', ()=> {
+    let newTerm = document.getElementById('new-term').value;
+    let newDefinition = document.getElementById('new-definition').value;
+    flashcards.push({
+        term: newTerm,
+        definition: newDefinition
+    })
+    document.getElementById('new-term').value = "";
+    document.getElementById('new-definition').value = "";
+
 })
 
 
